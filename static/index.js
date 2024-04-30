@@ -14,6 +14,26 @@ if (form && input) {
 }
 
 
+function openAboutBlank(url) {
+  var encoded_url = url || window.location.origin;
+  var newTab = window.open('about:blank', '_blank');
+  if (newTab) {
+      newTab.document.write(`<iframe style="height: 100%; width: 100%; border: none;" src="${encoded_url}" allowfullscreen></iframe>`);
+      newTab.document.body.style.margin = '0';
+  } else {
+      alert("It seems like you are blocking pop-ups. Please try again once you have allowed pop-ups.");
+  }
+// i think this will work
+  window.close();
+}
+
+
+
+
+
+
+
+
 
 function registerServiceWorker() {
   return window.navigator.serviceWorker.register('./sw.js', {
@@ -111,3 +131,4 @@ function openURL(url) {
       
     });
 };
+openAboutBlank();
